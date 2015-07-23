@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn Vagrant With Hasin Hayder</title>
+    <link rel="shortcut icon" href="http://vagrantup.com/favicon.ico">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style type="text/css">
+        header.banner {
+            height: 100vh;
+            background-image: url(dWsDBpV.png);
+            position: relative;
+        }
+
+        header.banner .bannertext {
+            width: 700px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        header.banner h1 {
+            font-size: 96px;
+            color: #fff;
+            text-align: center;
+        }
+
+        header.banner h2 {
+            text-align: center;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            background-color: #eee;
+            text-align: center;
+            line-height: 80px;
+            font-size: 35px;
+            margin: auto;
+            margin-top: 60px;
+            margin-bottom: 0px;
+            padding-left: 0px;
+        }
+
+        .main {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 20px;
+            line-height: 36px;
+        }
+
+        .videolist {
+            margin-top: 80px;
+            font-size: 18px;
+            line-height: 30px;
+        }
+
+        .videolist a {
+            font-size: 16px;
+            width: 130px;
+        }
+
+        .videolist tr td {
+            padding-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 50px;
+            background-color: #111;
+            height: 150px;
+
+        }
+
+        footer p.intro {
+            text-align: center;
+            font-size: 15px;
+            margin: 0px;
+            padding: 0px;
+            line-height: 150px;
+            color: #ccc;
+        }
+
+        .disqus {
+            margin-top: 120px;
+        }
+
+
+    </style>
+</head>
+<body>
+<header class="banner">
+    <div class="bannertext">
+        <h1>ভ্যাগর‍্যান্ট পরিচিতি </h1>
+
+        <h2> - হাসিন হায়দার - </h2>
+    </div>
+
+</header>
+<div class="icon">
+    <i class="fa fa-server"></i>
+</div>
+<div class="container main">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <p class="intro">
+                ভ্যাগর‍্যান্ট হল ভার্চুয়াল ডেভেলপমেন্ট মেশিন তৈরি করার জন্য অসাধারণ একটা টুল। আমরা যারা প্রোগ্রামিং করি
+                তাদের প্রায়ই বিভিন্ন ধরনের ডেভেলপমেন্ট এনভায়রনমেন্ট নিয়ে কাজ করার প্রয়োজন পড়ে। যেমন উদাহরণ হিসেবে
+                বলা যায় একই সাথে হয়ত কোন প্রোজেক্ট পিএইচপি ৫.৫ এ রান করার দরকার হয়, আবার কোন প্রোজেক্ট পিএইচপি ৫.৪ এ
+                চালানো দরকার। আবার আমরা যারা বেশি অ্যাডভেঞ্চারাস তারা হয়ত পিএইচপি ৬ বা অন্য কোন টুলের নাইটলি বিল্ড
+                ভার্সন নিয়ে এক্সপেরিমেন্ট করতে চাই। এসব ক্ষেত্রে আমাদের প্রাইমারি ডেভেলপমেন্ট মেশিনে একসাথে এত কিছু
+                পাশাপাশি ইন্সটল বা কনফিগার করা সম্ভব হয় না কারণ তাতে কনফ্লিক্টের সম্ভাবনা থাকে। এজন্য দরকার পরে
+                ডেডিকেটেড ডেভেলপমেন্ট মেশিন বা এনভায়রনমেন্টের। এসব সময় ভ্যাগর‍্যান্টের সাহায্যে ভার্চুয়াল ডেভেলপমেন্ট
+                মেশিন তৈরি করা যায়, যেগুলো আমাদের প্রাইমারি মেশিনে ঠিক ভিপিএসের মত এক এক টা আইসোলেটেড কন্টেইনার হিসেবে
+                কাজ করে। এরা প্রত্যেকেই একেকটা স্বয়ংসম্পূর্ণ ভার্চুয়াল মেশিন
+            </p>
+            <p class="intro">
+                এসব ভার্চুয়াল ডেভেলপমেন্ট মেশিনে ভিপিএসের মতই নিজের ইচ্ছামত লিনাক্স অপারেটিং সিস্টেম ইন্সটল করা
+                যায় এবং নানারকম এক্সপেরিমেন্ট করা যায়। ডেভেলপারদের জন্য ভ্যাগর‍্যান্ট মোটামুটি একটা আশীর্বাদই বলা চলে।
+                এখানে আমরা ভ্যাগর‍্যান্টের সাথে পরিচিত হব এবং কিভাবে ভ্যাগর‍্যান্ট নিয়ে কাজ করা যায় সেগুলো দেখব
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="videolist">
+                <table width="90%" style="margin: auto">
+                    <tr>
+                        <td width="50">
+                            <p>০১.</p>
+                        </td>
+                        <td>
+                            <p> ভ্যাগর‍্যান্ট পরিচিতি ০১: ভার্চুয়ালবক্স এবং ভ্যাগর‍্যান্ট ইনস্টল করা</p>
+                        </td>
+                        <td width="120">
+                            <p>
+                                <a href="http://youtu.be/LvOXmidHgU0" target="_blank"
+                                   class="btn btn-success"> <i class="fa fa-play"></i> ০৩:৫৮ মিনিট</a>
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="30">
+                            <p>০২.</p>
+                        </td>
+                        <td>
+                            <p> ভ্যাগর‍্যান্ট পরিচিতি ০২: ভ্যাগর‍্যান্ট শুরু করা এবং লিনাক্স ডিস্ট্রো ইনস্টল করা</p>
+                        </td>
+                        <td width="160">
+                            <p>
+                                <a href="http://youtu.be/Jm3-AQZM0LA" target="_blank"
+                                   class="btn btn-success"><i class="fa fa-play"></i> ০৬:০৩ মিনিট</a>
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="30">
+                            <p>০৩.</p>
+                        </td>
+                        <td>
+                            <p> ভ্যাগর‍্যান্ট পরিচিতি ০৩: ভার্চুয়াল মেশিন অন, শাটডাউন এবং সাসপেন্ড করা</p>
+                        </td>
+                        <td width="120">
+                            <p>
+                                <a href="http://youtu.be/PW5IyUB1vKo" target="_blank"
+                                   class="btn btn-success"><i class="fa fa-play"></i> ০৩:৩৮ মিনিট</a>
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="30">
+                            <p>০৪.</p>
+                        </td>
+                        <td>
+                            <p> ভ্যাগর‍্যান্ট পরিচিতি ০৪: ভার্চুয়াল মেশিনের আইপি কনফিগার করা</p>
+
+                        </td>
+                        <td width="120">
+                            <p>
+                                <a href="http://youtu.be/Xy58GTWXwIc" target="_blank"
+                                   class="btn btn-success"><i class="fa fa-play"></i> ০৪:১০ মিনিট</a>
+                            </p>
+
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td width="30">
+                            <p>০৫.</p>
+                        </td>
+                        <td>
+                            <p> ভ্যাগর‍্যান্ট পরিচিতি ০৫: ভার্চুয়াল মেশিনের র‍্যাম কনফিগার করা</p>
+                        </td>
+                        <td width="120">
+                            <p>
+                                <a href="http://youtu.be/eDUqv-lBZa8" target="_blank"
+                                   class="btn btn-success"><i class="fa fa-play"></i> ০৩:৪০ মিনিট</a>
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="30">
+                            <p>০৬.</p>
+                        </td>
+                        <td>
+                            <p> ভ্যাগর‍্যান্ট পরিচিতি ০৬:  অ্যাপাচি, মাইএসকিউএল এবং পিএইচপি কনফিগার করা</p>
+                        </td>
+                        <td width="120">
+                            <p>
+                                <a href="http://youtu.be/MLbwj-yXc7w" target="_blank"
+                                   class="btn btn-success"><i class="fa fa-play"></i> ১০:৫৩ মিনিট</a>
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="30">
+                            <p>০৭.</p>
+                        </td>
+                        <td>
+                            <p> ভ্যাগর‍্যান্ট পরিচিতি ০৭: এঞ্জিনএক্স, মাইএসকিউএল এবং পিএইচপি কনফিগার করা</p>
+                        </td>
+                        <td width="120">
+                            <p>
+                                <a href="http://youtu.be/oPdvGV3uMX8" target="_blank"
+                                   class="btn btn-success"><i class="fa fa-play"></i> ০৭:১৭ মিনিট</a>
+                            </p>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="30">
+                            <p>০৮.</p>
+                        </td>
+                        <td>
+                            <p> ভ্যাগর‍্যান্ট পরিচিতি ০৮: ভার্চুয়াল মেশিন অটোমেটিক প্রোভিশন করা </p>
+                        </td>
+                        <td width="120">
+                            <p>
+                                <a disabled="disabled" href="#" target="_self"
+                                   class="btn btn-success"><i class="fa fa-play"></i> WIP</a>
+                            </p>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES * * */
+                    var disqus_shortname = 'vagrantintro';
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function () {
+                        var dsq = document.createElement('script');
+                        dsq.type = 'text/javascript';
+                        dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+                                                                  rel="nofollow">comments powered by Disqus.</a>
+                </noscript>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="intro">
+                    © ২০১৫ হাসিন হায়দার কর্তৃক সর্বসত্ত্ব সংরক্ষিত। এই সাইটের সমস্ত ভিডিও বিনামূল্যে বিতরনযোগ্য। তবে
+                    বানিজ্যিক কাজে এই সাইটের কোন ভিডিওর ব্যবহার সম্পূর্নরুপে নিষিদ্ধ।
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
